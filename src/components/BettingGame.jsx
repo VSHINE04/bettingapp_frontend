@@ -21,7 +21,7 @@ const DiceGame = () => {
   useEffect(() => {
     const verifyBalance = async () => {
       try {
-        const response = await axios.post(API_BASE_URL, {
+        const response = await axios.post(`${API_BASE_URL}/verify-balance`, {
           currentBalance: balance
         });
         
@@ -77,7 +77,7 @@ const DiceGame = () => {
     setDiceRoll(null);
 
     try {
-      const response = await axios.post('http://localhost:5000/roll-dice', {
+      const response = await axios.post(`${API_BASE_URL}/roll-dice`, {
         betAmount: numBetAmount,
         multiplier
       });
@@ -112,7 +112,7 @@ const DiceGame = () => {
 
   const handleResetBalance = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/reset-balance');
+      const response = await axios.post(`${API_BASE_URL}/reset-balance`);
       const newBalance = response.data.balance;
       setBalance(newBalance);
       setBetAmount('');
