@@ -4,6 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const DiceGame = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [balance, setBalance] = useState(() => {
     const savedBalance = localStorage.getItem('diceGameBalance');
     return savedBalance ? Number(savedBalance) : 1000;
@@ -20,7 +21,7 @@ const DiceGame = () => {
   useEffect(() => {
     const verifyBalance = async () => {
       try {
-        const response = await axios.post('http://localhost:5000/verify-balance', {
+        const response = await axios.post(API_BASE_URL, {
           currentBalance: balance
         });
         
